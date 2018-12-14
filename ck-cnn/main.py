@@ -1,5 +1,3 @@
-'''Train CK+ with PyTorch.'''
-# 10 crop for data enhancement
 from __future__ import print_function
 
 import torch
@@ -28,20 +26,20 @@ opt = parser.parse_args()
 
 use_cuda = torch.cuda.is_available()
 
-best_Test_acc = 0  # best PrivateTest accuracy
+best_Test_acc = 0
 best_Test_acc_epoch = 0
-start_epoch = 0  # start from epoch 0 or last checkpoint epoch
+start_epoch = 0
 
-learning_rate_decay_start = 20  # 50
-learning_rate_decay_every = 1 # 5
-learning_rate_decay_rate = 0.8 # 0.9
+learning_rate_decay_start = 20
+learning_rate_decay_every = 1
+learning_rate_decay_rate = 0.8
 
 cut_size = 44
 total_epoch = 30
 
 path = os.path.join(opt.dataset + '_' + opt.model, str(opt.fold))
 
-# Data
+# Dataset
 print('==> Preparing data..')
 transform_train = transforms.Compose([
     transforms.RandomCrop(cut_size),
@@ -59,7 +57,7 @@ trainloader = torch.utils.data.DataLoader(trainset, batch_size=opt.bs, shuffle=T
 testset = CK(split = 'Testing', fold = opt.fold, transform=transform_test)
 testloader = torch.utils.data.DataLoader(testset, batch_size=5, shuffle=False, num_workers=1)
 
-# Model
+# Model VGG19
 net = VGG('VGG19')
 
 if opt.resume:
