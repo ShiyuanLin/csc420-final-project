@@ -116,7 +116,7 @@ def show_webcam_and_run(model, emotions, window_size=None, window_name='webcam',
 
 def show_image_test(model, emotions):
     training_data = []
-    image = cv2.imread('datatest/face6.jpg')
+    image = cv2.imread('datatest/face2.jpg')
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
     clahe_image = clahe.apply(gray)
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     emotions = ["anger", "disgust", "happy", "neutral", "surprise"]
     #load models
     #joblib.load('models/emotion_detection_model.xml')
-    pkl_file = open('models/model1.pkl', 'rb')
+    pkl_file = open('models/model.pkl', 'rb')
     data = pickle.load(pkl_file)
     #data.predict(X[0:1])
     pkl_file.close()

@@ -159,9 +159,9 @@ if __name__ == '__main__':
     print('Best accuracy = ', max_accur*100, 'percent')
     print(max_clf)
     try:
-        os.remove('models\model1.pkl')
+        os.remove('models\model.pkl')
     except OSError:
         pass
-    output = open('models\model1.pkl', 'wb')
+    output = open('models\model.pkl', 'wb')
     pickle.dump(max_clf, output)
     output.close()
